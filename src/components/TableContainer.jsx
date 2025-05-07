@@ -23,7 +23,7 @@ const ClientTable = ({ data: initialData }) => {
     field: null,
   });
 
-  const clientsPerPage = 20;
+  const clientsPerPage = 30;
 
   // Filtering data
   const filteredData = data.filter((client) => {
@@ -232,18 +232,6 @@ const ClientTable = ({ data: initialData }) => {
                             <strong>Last Promotion Date: </strong>
                             {client.details.lastPromotionDate}
                           </p>
-                          <div className="mt-2">
-                            <strong>Performance:</strong>
-                            <ul className="list-disc ml-6">
-                              {Object.entries(client.details.performance).map(
-                                ([year, rating]) => (
-                                  <li key={year}>
-                                    {year}: {rating}
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          </div>
                         </div>
                       </td>
                     </tr>
