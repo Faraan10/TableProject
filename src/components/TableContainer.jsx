@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TableFilters from "./TableFilters";
 import toast from "react-hot-toast";
+import ExportButton from "./ExportButton";
 
 const ClientTable = ({ initialData }) => {
   const [data, setData] = useState(initialData);
@@ -60,6 +61,10 @@ const ClientTable = ({ initialData }) => {
 
   return (
     <div className="p-6">
+      <div className="flex justify-end my-4">
+        <ExportButton data={filteredData} filename="clients.csv" />
+      </div>
+
       <TableFilters
         data={data}
         search={search}
@@ -212,7 +217,7 @@ const ClientTable = ({ initialData }) => {
                                 department: client.department,
                               });
                               setExpandedRow(null);
-                              // toast.loading(`Editing ${client.name}'s record`);
+                              toast(`Editing ${client.name}'s record`);
                             }}
                           >
                             Edit

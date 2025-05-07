@@ -1,5 +1,5 @@
 import TableContainer from "./components/TableContainer";
-import initialData from "./data/data.json"; // data
+import initialData from "./data/data.json"; // mockdata
 import "./App.css";
 
 const App = () => {
