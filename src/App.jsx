@@ -1,11 +1,11 @@
 import TableContainer from "./components/TableContainer";
-import data from "./data/data.json"; // data
+import initialData from "./data/data.json"; // data
 import "./App.css";
 
 const App = () => {
   return (
     <>
-      <TableContainer data={data} />
+      <TableContainer initialData={initialData} />
     </>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import TableFilters from "./TableFilters";
+import toast from "react-hot-toast";
 
-const ClientTable = ({ data: initialData }) => {
+const ClientTable = ({ initialData }) => {
   const [data, setData] = useState(initialData);
 
   const [search, setSearch] = useState("");
@@ -145,6 +146,16 @@ const ClientTable = ({ data: initialData }) => {
                           <button
                             className="btn btn-soft btn-success"
                             onClick={() => {
+                              const { name, role, department } = editrow;
+                              if (
+                                !name.trim() ||
+                                !role.trim() ||
+                                !department.trim()
+                              ) {
+                                toast.error("All fields are required!");
+                                return;
+                              }
+
                               setData((prevData) =>
                                 prevData.map((clientItem) =>
                                   clientItem.id === editBasedId.rowId
@@ -152,6 +163,8 @@ const ClientTable = ({ data: initialData }) => {
                                     : clientItem
                                 )
                               );
+
+                              toast.success(`Saved changes for ${name}`);
                               setEditBasedId({ rowId: null, field: null });
                               setEditRow({
                                 name: "",
@@ -180,7 +193,9 @@ const ClientTable = ({ data: initialData }) => {
                         <div className="flex flex-col lg:flex-row gap-2">
                           <button
                             className="btn btn-soft btn-accent"
-                            onClick={() => toggleRow(client.id)}
+                            onClick={() => {
+                              toggleRow(client.id);
+                            }}
                           >
                             More Info
                           </button>
@@ -196,6 +211,8 @@ const ClientTable = ({ data: initialData }) => {
                                 role: client.role,
                                 department: client.department,
                               });
+                              setExpandedRow(null);
+                              // toast.loading(`Editing ${client.name}'s record`);
                             }}
                           >
                             Edit
